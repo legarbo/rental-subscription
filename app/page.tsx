@@ -1,24 +1,8 @@
-import Pricing from '@/components/ui/Pricing/Pricing';
-import { createClient } from '@/utils/supabase/server';
-import {
-  getProducts,
-  getSubscription,
-  getUser
-} from '@/utils/supabase/queries';
+import Link from 'next/link';
 
-export default async function PricingPage() {
-  const supabase = createClient();
-  const [user, products, subscription] = await Promise.all([
-    getUser(supabase),
-    getProducts(supabase),
-    getSubscription(supabase)
-  ]);
-
-  return (
-    <Pricing
-      user={user}
-      products={products ?? []}
-      subscription={subscription}
-    />
-  );
+export default function HomePage() {
+  <>
+    <h1>This is the Home Page</h1>
+    <Link href="/pricing">Pricing 🍺</Link>
+  </>;
 }
