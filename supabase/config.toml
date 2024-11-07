@@ -149,21 +149,10 @@ redirect_uri = ""
 url = ""
 # If enabled, the nonce check will be skipped. Required for local sign in with Google auth.
 skip_nonce_check = false
-[auth.external.google]
-enabled = true
-client_id = "327860650056-jckg84gnes9bgh8sk9jno7pp7pp2qt7d.apps.googleusercontent.com"
-# DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
-secret = "env(SUPABASE_AUTH_GOOGLE_SECRET)"
-# Overrides the default auth redirectUrl.
-redirect_uri = "http://127.0.0.1:54321/auth/v1/callback"
-# Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
-# or any other third-party OIDC providers.
-url = ""
-# If enabled, the nonce check will be skipped. Required for local sign in with Google auth.
-skip_nonce_check = true
+
 [auth.external.github]
 enabled = true
-client_id = "env(SUPABASE_AUTH_GITHUB_CLIENT_ID)"
+client_id = "Ov23liknfrPCaryLGKRc"
 # DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
 secret = "env(SUPABASE_AUTH_GITHUB_SECRET)"
 # Overrides the default auth redirectUrl.
@@ -173,6 +162,18 @@ redirect_uri = "http://127.0.0.1:54321/auth/v1/callback"
 url = ""
 # If enabled, the nonce check will be skipped. Required for local sign in with Google auth.
 skip_nonce_check = false
+[auth.external.google]
+enabled = true
+client_id = "327860650056-k9l0bp1t3v9lup1kpi4ir9vrhusrsqlf.apps.googleusercontent.com"
+# DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
+secret = "env(SUPABASE_AUTH_GOOGLE_CLIENT_SECRET)"
+# Overrides the default auth redirectUrl.
+redirect_uri = "http://127.0.0.1:54321/auth/v1/callback"
+# Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
+# or any other third-party OIDC providers.
+url = ""
+# If enabled, the nonce check will be skipped. Required for local sign in with Google auth.
+skip_nonce_check = true
 
 [edge_runtime]
 enabled = true
