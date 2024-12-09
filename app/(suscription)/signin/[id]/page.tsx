@@ -1,4 +1,5 @@
 import Logo from '@/components/icons/Logo';
+import { BigRbLogo } from '@/components/ui/rb-logo';
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -55,10 +56,10 @@ export default async function SignIn({
   }
 
   return (
-    <div className="flex justify-center height-screen-helper">
-      <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
+    <div className="height-screen-helper flex justify-center">
+      <div className="m-auto flex w-80 max-w-lg flex-col justify-between p-3 ">
         <div className="flex justify-center pb-12 ">
-          <Logo width="64px" height="64px" />
+          <BigRbLogo width="64px" height="64px" />
         </div>
         <Card
           title={

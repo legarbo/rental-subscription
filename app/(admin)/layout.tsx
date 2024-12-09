@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import Footer from '@/components/ui/Footer';
 import Navbar from '@/components/ui/Navbar';
-import { Toaster } from '@/components/ui/Toasts/toaster';
+import SideNav from '@/components/ui/dashboard/sidenav';
 import { PropsWithChildren, Suspense } from 'react';
 import { getURL } from '@/utils/helpers';
 import 'styles/main.css';
@@ -19,21 +18,19 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function RootLayout({ children }: PropsWithChildren) {
+export default async function Layout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className="bg-black">
+      <body>
         <Navbar />
-        <main
-          id="skip"
-          className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
-        >
-          {children}
+        <main className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+          <div className="w-full flex-none md:w-64">
+            <SideNav />
+          </div>
+          <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+            {children}
+          </div>
         </main>
-        <Footer />
-        <Suspense>
-          <Toaster />
-        </Suspense>
       </body>
     </html>
   );

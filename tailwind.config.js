@@ -17,6 +17,9 @@ module.exports = {
       }
     },
     extend: {
+      gridTemplateColumns: {
+        13: 'repeat(13, minmax(0, 1fr))'
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans]
       },
@@ -28,6 +31,11 @@ module.exports = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 }
+        },
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)'
+          }
         }
       },
       animation: {
@@ -36,5 +44,5 @@ module.exports = {
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/forms')]
 };
