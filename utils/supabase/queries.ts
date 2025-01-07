@@ -1,5 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 import { cache } from 'react';
+import { customers, renters, revenue } from '@/app/lib/placeholder-data';
 
 export const getUser = cache(async (supabase: SupabaseClient) => {
   const {
@@ -37,3 +38,27 @@ export const getUserDetails = cache(async (supabase: SupabaseClient) => {
     .single();
   return userDetails;
 });
+
+export async function fetchCardData() {
+  const numberOfRenters = renters.length;
+  const numberOfCustomers = customers.length;
+
+  const totalFlaggedRenters = renters.map(
+    (renter) => renter.status === 'flagged'
+  ).length;
+  const totalCollectedRenters = numberOfRenters - totalFlaggedRenters;
+  return {
+    numberOfRenters,
+    numberOfCustomers,
+    totalFlaggedRenters,
+    totalCollectedRenters
+  };
+}
+
+export async function fetchRevenue() {
+  return revenue;
+}
+
+export async function fetchLatestRenters() {
+  return renters;
+}

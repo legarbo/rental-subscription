@@ -25,6 +25,9 @@ shadow_port = 54320
 major_version = 15
 seed.enabled = true
 
+[db.seed]
+sql_paths = ['./seeds/*.sql']
+
 [db.pooler]
 enabled = false
 # Port to use for the local connection pooler.
