@@ -30,23 +30,49 @@ async function getUserId(supabase: SupabaseClient) {
 export const FetchOwnRenters = cache(
   async (query: string, supabase: SupabaseClient) => {
     const user_id = await getUserId(supabase);
+    console.log(query);
 
-    const { data, error } = await supabase
-      .from('renters')
-      .select(
+    if (query === '') {
+      const { data, error } = await supabase
+        .from('renters')
+        .select(
+          `
+        first_name,
+        last_name,
+        email,
+        phone,
+        customer_id,
+        status,
+        created_at
         `
-      first_name,
-      last_name,
-      email,
-      phone,
-      customer_id,
-      status,
-      created_at
-      `
-      )
-      .eq('customer_id', user_id);
+        )
+        .eq('customer_id', user_id);
 
+      return data;
+    }
+    const { data, error } = await supabase.rpc(
+      'search_renters_by_status_prefix',
+      { prefix: query }
+    );
     return data;
+    // return data;
+    // const { data, error } = await supabase
+    //   .from('renters')
+    //   .select(
+    //     `
+    //     first_name,
+    //   last_name,
+    //   email,
+    //   phone,
+    //   customer_id,
+    //   status,
+    //   created_at
+    // `
+    //   )
+    //   .eq('customer_id', user_id)
+    //   .filter('status', 'in', query);
+
+    // return data;
   }
 );
 

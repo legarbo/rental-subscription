@@ -52,7 +52,7 @@ export type RentersTable = {
   email: string;
   image_url: string;
   date: string;
-  status: 'pending' | 'flagged' | 'paid';
+  status: 'pending' | 'paid' | 'flagged';
 };
 
 export type FormattedRentersTable = {
