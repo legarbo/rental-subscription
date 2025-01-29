@@ -6,15 +6,13 @@ import { FetchOwnRenters } from '@/app/lib/data';
 import { createClient } from '@/utils/supabase/server';
 
 type OwnRentersTablePropos = {
-  query: string;
   currentPage?: number;
-  customerId?: string;
+  query: string;
 };
 
 export default async function OwnRentersTable({
-  query,
   currentPage,
-  customerId
+  query
 }: OwnRentersTablePropos) {
   const supabase = createClient();
   const renters = await FetchOwnRenters(query, supabase);

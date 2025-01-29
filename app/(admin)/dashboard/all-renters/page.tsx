@@ -1,3 +1,4 @@
+import Pagination from '@/components/ui/renters/pagination';
 import RentersTable from '@/components/ui/renters/renters-table';
 import { Search } from './search';
 import { Metadata } from 'next';
@@ -18,6 +19,8 @@ export default async function AllRentersPage({
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
+  // const totalPages = await fetchRentersPages(query);
+
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -27,6 +30,9 @@ export default async function AllRentersPage({
         <Search placeholder="Search renters..." />
       </div>
       <RentersTable query={query} currentPage={currentPage} />
+      {/* <div className="mt-5 flex w-full justify-center">
+        <Pagination totalPages={totalPages} />
+      </div> */}
     </div>
   );
 }

@@ -73,3 +73,8 @@ export type RenterForm = {
   amount: number;
   status: 'pending' | 'paid' | 'flagged';
 };
+
+export type Revenue = {
+  month: string;
+  revenue: number;
+};

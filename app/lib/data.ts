@@ -42,7 +42,7 @@ export const FetchOwnRenters = cache(
         email,
         phone,
         customer_id,
-        status,
+        status, 
         created_at
         `
         )
@@ -51,45 +51,26 @@ export const FetchOwnRenters = cache(
       return data;
     }
     const { data, error } = await supabase.rpc(
-      'search_renters_by_status_prefix',
+      'search_renters_by_name_prefix',
       { prefix: query }
     );
     return data;
-    // return data;
-    // const { data, error } = await supabase
-    //   .from('renters')
-    //   .select(
-    //     `
-    //     first_name,
-    //   last_name,
-    //   email,
-    //   phone,
-    //   customer_id,
-    //   status,
-    //   created_at
-    // `
-    //   )
-    //   .eq('customer_id', user_id)
-    //   .filter('status', 'in', query);
-
-    // return data;
   }
 );
 
 export const fetchFilteredRenters = cache(
   async (query: string, supabase: SupabaseClient) => {
+    console.log(query);
     if (query === '') {
-      const { data, error } = await supabase.from('renters').select(
-        `
+      const { data, error } = await supabase.from('renters').select(`
       first_name,
-      last_name,
-      email,
-      phone,
-      customer_id,
-      status,
-      created_at
-      `
-      );
+        last_name,
+        email,
+        phone,
+        customer_id,
+        status, 
+        created_at
+      `);
       return data;
     }
 
@@ -100,6 +81,15 @@ export const fetchFilteredRenters = cache(
     return data;
   }
 );
+
+// export const fetchRentersPages = cache(
+//   async(query: string, supabase: SupabaseClient) => {
+//     console.log(query)
+//     if (query === '') {
+//       const { data, error } = await supabase.
+//     }
+//   }
+// )
 
 export const FetchCustomers = cache(async (supabase: SupabaseClient) => {
   const { data, error } = await supabase.from('customers').select();

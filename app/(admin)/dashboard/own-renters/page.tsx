@@ -3,10 +3,10 @@ import RentersTable from '@/components/ui/renters/own-renters-table';
 import { Search } from '../all-renters/search';
 
 type PageProps = {
-  searchParams: { query?: string; customerId?: string };
+  searchParams: { query?: string };
 };
 export default async function OwnRenters({
-  searchParams: { query = '', customerId = '' }
+  searchParams: { query = '' }
 }: PageProps) {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getUser();
@@ -18,7 +18,7 @@ export default async function OwnRenters({
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search renters..." />
       </div>
-      <RentersTable customerId={data.user?.id} query={''} currentPage={1} />
+      <RentersTable query={query} currentPage={1} />
     </>
   );
 }
