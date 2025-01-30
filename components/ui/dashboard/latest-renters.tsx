@@ -2,10 +2,12 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from '@/components/ui/fonts';
-import { fetchLatestRenters } from '@/utils/supabase/queries';
+import { fetchLatestRenters } from '@/app/lib/data';
+import { createClient } from '@/utils/supabase/server';
 
 export default async function LatestRenters() {
-  const latestRenters = await fetchLatestRenters();
+  const supabase = createClient();
+  const latestRenters = await fetchLatestRenters(supabase);
   return (
     <div className="flex w-full flex-col md:col-span-4 lg:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -15,7 +17,7 @@ export default async function LatestRenters() {
         {/* NOTE: comment in this code when you get to this point in the course */}
 
         <div className="bg-white px-6">
-          {latestRenters.map((renter, i) => {
+          {latestRenters!.map((renter, i) => {
             return (
               <div
                 key={renter.id}
@@ -28,7 +30,7 @@ export default async function LatestRenters() {
               >
                 <div className="flex items-center">
                   <Image
-                    src={renter.image_url}
+                    src={renter.avatar_url}
                     alt={`${renter.last_name}'s profile picture`}
                     className="mr-4 rounded-full"
                     width={32}
@@ -43,11 +45,11 @@ export default async function LatestRenters() {
                     </p>
                   </div>
                 </div>
-                <p
+                {/* <p
                   className={`${lusitana.className} truncate text-sm font-medium md:text-base`}
                 >
                   {renter.amount}
-                </p>
+                </p> */}
               </div>
             );
           })}

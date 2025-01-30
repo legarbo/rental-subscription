@@ -3,7 +3,7 @@ import { getUser } from '@/utils/supabase/queries';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 
-export const FetchRenters = cache(async (supabase: SupabaseClient) => {
+export const fetchLatestRenters = cache(async (supabase: SupabaseClient) => {
   const { data, error } = await supabase.from('renters').select();
 
   return data;

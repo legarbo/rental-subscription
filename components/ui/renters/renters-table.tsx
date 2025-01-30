@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from '@/components/ui/renters/buttons';
 import RenterStatus from '@/components/ui/renters/status';
-import { FetchRenters } from '@/app/lib/data';
+import { fetchLatestRenters } from '@/app/lib/data';
 import { fetchFilteredRenters } from '@/app/lib/data';
 import { RentersTable as RentTable } from '@/app/lib/definitions';
 import { createClient } from '@/utils/supabase/server';
