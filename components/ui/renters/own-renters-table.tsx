@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/components/ui/renters/buttons';
+// import { UpdateInvoice, DeleteInvoice } from '@/components/ui/renters/buttons';
 import { formatDateToLocal } from '@/app/lib/utils';
 import RenterStatus from '@/components/ui/renters/status';
 import { FetchOwnRenters } from '@/app/lib/data';
