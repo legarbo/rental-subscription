@@ -58,11 +58,17 @@ export const FetchOwnRenters = cache(
   }
 );
 
+const ITEMS_PER_PAGE = 6;
+
 export const fetchFilteredRenters = cache(
-  async (query: string, supabase: SupabaseClient) => {
-    console.log(query);
+  async (query: string, currentPage: number, supabase: SupabaseClient) => {
+    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
     if (query === '') {
-      const { data, error } = await supabase.from('renters').select(`
+      const { data, error } = await supabase
+        .from('renters')
+        .select(
+          `
       first_name,
         last_name,
         email,
@@ -70,7 +76,9 @@ export const fetchFilteredRenters = cache(
         customer_id,
         status, 
         created_at
-      `);
+      `
+        )
+        .limit(offset);
       return data;
     }
 
@@ -82,14 +90,17 @@ export const fetchFilteredRenters = cache(
   }
 );
 
-// export const fetchRentersPages = cache(
-//   async(query: string, supabase: SupabaseClient) => {
-//     console.log(query)
-//     if (query === '') {
-//       const { data, error } = await supabase.
-//     }
-//   }
-// )
+export const fetchRentersPages = cache(
+  async (query: string, supabase: SupabaseClient) => {
+    const { count, error } = await supabase
+      .from('renters')
+      .select('*', { count: 'exact', head: true });
+
+    const totalPages = Math.ceil(Number(count) / ITEMS_PER_PAGE);
+
+    return totalPages;
+  }
+);
 
 export const FetchCustomers = cache(async (supabase: SupabaseClient) => {
   const { data, error } = await supabase.from('customers').select();

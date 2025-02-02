@@ -10,7 +10,7 @@ import { formatDateToLocal } from '@/app/lib/utils';
 
 type RentersTablePropos = {
   query: string;
-  currentPage?: number;
+  currentPage: number;
 };
 
 export default async function RentersTable({
@@ -18,7 +18,7 @@ export default async function RentersTable({
   currentPage
 }: RentersTablePropos) {
   const supabase = createClient();
-  const renters = await fetchFilteredRenters(query, supabase);
+  const renters = await fetchFilteredRenters(query, currentPage, supabase);
 
   return (
     <div className="mt-6 flow-root">
@@ -109,9 +109,9 @@ export default async function RentersTable({
                       {renter.phone}
                     </td>
 
-                    {/* <td className="whitespace-nowrap px-3 py-3">
-                    {formatDateToLocal(renter.date)}
-                  </td> */}
+                    <td className="whitespace-nowrap px-3 py-3">
+                      {formatDateToLocal(renter.date)}
+                    </td>
                     <td className="whitespace-nowrap px-3 py-3">
                       <RenterStatus status={renter.status} />
                     </td>

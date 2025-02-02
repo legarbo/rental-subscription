@@ -70,7 +70,7 @@ function PaginationNumber({
   position
 }: {
   page: number | string;
-  href: UrlObject;
+  href: any;
   position?: 'first' | 'last' | 'middle' | 'single';
   isActive: boolean;
 }) {
@@ -99,7 +99,7 @@ function PaginationArrow({
   direction,
   isDisabled
 }: {
-  href: UrlObject;
+  href: any;
   direction: 'left' | 'right';
   isDisabled?: boolean;
 }) {
